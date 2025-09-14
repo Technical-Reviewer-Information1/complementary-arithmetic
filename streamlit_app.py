@@ -34,9 +34,9 @@ def format_binary_calculation(num1, num2, result, operation):
     lines.append(f"  {result}")
     return "\n".join(lines)
 
-st.set_page_config(page_title="補数を使った減算の学習", page_icon="🤖", layout="wide")
+st.set_page_config(page_title="補数を使った減算", page_icon="🤖", layout="wide")
 
-st.title("補数を使った減算")
+st.title("補数を使った減算（pp.144-145）")
 st.caption("Created by Dit-Lab.(Daiki ITO)")
 st.caption("Supported by Tomoaki ATSUMI")
 
