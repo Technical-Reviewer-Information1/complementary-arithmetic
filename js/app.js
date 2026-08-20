@@ -183,6 +183,12 @@
 
   function drawAll() { drawComp(); drawFlip(); }
 
+  /* 本文の問題 */
+  function drawBook() {
+    if (!document.getElementById('bookBox')) return;
+    window.Quiz.choice('bookBox', 'bookNote', [{"k": "ア", "q": "2進法0110（2）の補数は。", "ch": ["1000", "1001", "1010", "0101", "0100", "0110", "11000", "10100"], "a": 2, "why": "0110＋1010＝10000 と桁が1つ増えます。反転（1001）＋1 ＝ 1010 でも求められます。"}, {"k": "イ", "q": "2進法の補数の求め方は。", "ch": ["各桁の0と1を反転する", "各桁の0と1を反転し、1を足す", "各桁の0と1を反転し、1を引く", "各桁の0と1を反転し、10を足す"], "a": 1, "why": "<strong>反転して＋1</strong>。これが2の補数の作り方です。"}, {"k": "ウ", "q": "1110（2）－0110（2）を補数で計算した結果は。", "ch": ["1000", "1001", "1010", "0101", "0100", "0110", "11000", "10100"], "a": 0, "why": "1110＋1010＝11000。<strong>桁上がりの1を捨てて</strong> 1000（2）＝8。14－6＝8 と一致します。"}, {"k": "エ", "q": "10進法−7を（4ビットの）2進法で表すと。", "ch": ["0111", "1000", "1001", "1111"], "a": 2, "why": "7＝0111 → 反転1000 → ＋1で <strong>1001</strong>。先頭が1なので負の数です。"}, {"k": "オ", "q": "nビットで表される整数の範囲の最小値は。", "ch": ["0", "1", "2n", "−2n", "2ⁿ−1", "2ⁿ⁻¹", "2ⁿ⁻¹−1", "−2ⁿ⁻¹", "−2ⁿ⁻¹−1"], "a": 7, "why": "符号ありのnビットでは <strong>−2ⁿ⁻¹</strong> 〜 2ⁿ⁻¹−1。8ビットなら −128〜127 です。"}, {"k": "カ", "q": "nビットで表される整数の範囲の最大値は。", "ch": ["0", "1", "2n", "−2n", "2ⁿ−1", "2ⁿ⁻¹", "2ⁿ⁻¹−1", "−2ⁿ⁻¹", "−2ⁿ⁻¹−1"], "a": 6, "why": "最大は <strong>2ⁿ⁻¹−1</strong>。0を含むぶん、正の側が1つ少なくなります。"}], "本文の答えは【ア】②　【イ】①　【ウ】⓪　【エ】②　【オ】⑦　【カ】⑥ です。");
+  }
+
   function init() {
     document.querySelectorAll('[data-set]').forEach(b => b.addEventListener('click', () => {
       orig = b.dataset.set; fstep = 0; drawAll();
@@ -198,6 +204,7 @@
     $('qReset').addEventListener('click', startQuiz);
     window.Terms.glossary($('glossBox'), ['補数', '2進法', '基数変換', 'デジタル', '演算誤差']);
     drawAll(); drawSub(); drawNeg(); startQuiz();
+    drawBook();
     window.Terms.attach();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
