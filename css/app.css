@@ -1,0 +1,31 @@
+.qhead{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
+.card-q{border:1px solid var(--rule); background:var(--paper); padding:18px; margin-bottom:14px}
+.q-scene{font-size:1rem; font-weight:700; line-height:1.9}
+.choice4{display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.choice4 .btn{text-align:left; line-height:1.65; padding:11px 13px}
+.choice4 .btn.correct{background:var(--ok-bg); border-color:var(--ok); color:var(--ok)}
+.choice4 .btn.wrong{background:var(--ng-bg); border-color:var(--ng); color:var(--ng)}
+.choice4.locked{pointer-events:none}
+.sel{width:100%; font-family:inherit; font-size:.95rem; padding:9px 11px; min-height:42px;
+  border:1px solid var(--ink-3); border-radius:2px; background:var(--paper); color:var(--ink)}
+input[type=range]{width:100%; accent-color:var(--accent); height:34px}
+.why{font-size:.85rem; color:var(--ink-2); line-height:1.85}
+.eqbox{font-family:var(--mono); font-size:1.02rem; font-weight:700; text-align:center; padding:14px;
+  border:1px solid var(--rule); background:var(--paper-2); line-height:1.8}
+.blankin{border:1.5px solid var(--accent); background:#fff; padding:6px 8px; text-align:center;
+  font-family:var(--mono); min-height:38px; font-size:.95rem; max-width:120px}
+.blankin.ok{border-color:var(--ok); background:var(--ok-bg)}
+.blankin.ng{border-color:var(--ng); background:var(--ng-bg)}
+table.tbl td .blankin{width:100%; max-width:none}
+.bitline{display:flex; gap:4px; justify-content:center; margin:8px 0}
+.bitline .b{width:42px; height:46px; border:1px solid var(--rule); background:var(--paper);
+  font-family:var(--mono); font-weight:700; font-size:1.15rem; display:grid; place-items:center}
+.bitline .b.on{background:var(--accent); color:#fff; border-color:var(--accent)}
+.bitline .b.click{cursor:pointer}
+.bitline .b.flip{background:var(--warn-bg); border-color:#8a5a00; color:#8a5a00}
+.bitline .b.drop{opacity:.35; border-style:dashed; text-decoration:line-through}
+.arrowdown{text-align:center; font-size:1.2rem; color:var(--ink-3); line-height:1.2}
+.steplbl{font-size:.84rem; color:var(--ink-2); text-align:center; font-weight:700}
+.calcwrap{border:1px solid var(--rule); background:var(--paper); padding:14px}
+#rangeTable td{font-family:var(--mono); text-align:center}
+#rangeTable td:first-child{font-family:var(--font); text-align:left}

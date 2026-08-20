@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>補数を使った減算｜情報Ⅰ共通テスト対策問題集</title>
+<meta name="description" content="コンピュータは引き算ができません。だから「足すと桁が増える数」を足して引き算のかわりにします。手順を1つずつ追いましょう。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 fill=%22%2315181c%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2218%22 font-family=%22monospace%22 fill=%22%23fff%22 text-anchor=%22middle%22%3E01%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="inner">
+    <span class="eyebrow">第 5 章　デジタル　5-4</span>
+    <h1>補数を使った減算（pp.144-145）</h1>
+    <p class="lead">コンピュータは引き算ができません。だから「足すと桁が増える数」を足して引き算のかわりにします。手順を1つずつ追いましょう。</p>
+    <p class="credit">Created by Dit-Lab.(Daiki ITO)　/　Supported by Tomoaki ATSUMI</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="step" id="step1">
+    <h2><span class="no">STEP 1</span>補数とは何か</h2>
+    <p class="desc"><span class="term" data-t="補数">補数</span>とは、<strong>足すと桁が1つ増えるような数のうち、いちばん小さいもの</strong>です。</p>
+
+    <div class="panel">
+      <label class="fld">もとの数（クリックで0と1を切りかえ）</label>
+      <div class="bitline" id="origBits"></div>
+      <div class="calcwrap" style="margin-top:12px">
+        <div class="steplbl">もとの数</div>
+        <div class="bitline" id="c1"></div>
+        <div class="steplbl">＋　補数</div>
+        <div class="bitline" id="c2"></div>
+        <div style="border-top:2px solid var(--ink);margin:6px auto;max-width:280px"></div>
+        <div class="steplbl">＝</div>
+        <div class="bitline" id="c3"></div>
+      </div>
+      <div class="note" id="compNote" style="margin-top:12px"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn sm" data-set="0110">0110</button>
+        <button class="btn sm" data-set="0101">0101</button>
+        <button class="btn sm" data-set="0111">0111</button>
+        <button class="btn sm ghost" id="randOrig">でたらめ</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step2">
+    <h2><span class="no">STEP 2</span>補数の求め方（反転して1を足す）</h2>
+    <p class="desc">計算しなくても、<strong>0と1を反転して1を足す</strong>だけで補数が求まります。</p>
+    <div class="panel">
+      <div class="calcwrap">
+        <div class="steplbl">もとの数</div>
+        <div class="bitline" id="s1"></div>
+        <div class="arrowdown">↓　0と1を反転する</div>
+        <div class="bitline" id="s2"></div>
+        <div class="arrowdown">↓　1を足す</div>
+        <div class="bitline" id="s3"></div>
+      </div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn primary" id="flipStep">次の段階へ ▶</button>
+        <button class="btn ghost" id="flipReset">最初から</button>
+      </div>
+      <div class="note" id="flipNote" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="step" id="step3">
+    <h2><span class="no">STEP 3</span>引き算を足し算に置きかえる</h2>
+    <p class="desc"><strong>A − B ＝ A ＋（Bの補数）</strong>。最後に<strong>いちばん上の桁上がりを捨てる</strong>のがポイントです。</p>
+    <div class="panel">
+      <div class="grid c2">
+        <div>
+          <label class="fld" for="subA">A（引かれる数）</label>
+          <input type="text" id="subA" class="mono" value="1110" maxlength="8">
+          <label class="fld" style="margin-top:10px" for="subB">B（引く数）</label>
+          <input type="text" id="subB" class="mono" value="0110" maxlength="8">
+          <div class="note" id="subNote" style="margin-top:12px"></div>
+        </div>
+        <div class="calcwrap">
+          <div class="steplbl">A</div><div class="bitline" id="t1"></div>
+          <div class="steplbl">＋　Bの補数</div><div class="bitline" id="t2"></div>
+          <div style="border-top:2px solid var(--ink);margin:6px auto;max-width:300px"></div>
+          <div class="steplbl">＝（桁上がりを含む）</div><div class="bitline" id="t3"></div>
+          <div class="arrowdown">↓　いちばん上の桁上がりを捨てる</div>
+          <div class="bitline" id="t4"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step4">
+    <h2><span class="no">STEP 4</span>負の数の表し方</h2>
+    <p class="desc">補数を使うと、<strong>負の数もそのまま2進法で表せます</strong>。いちばん上のビットが1なら負の数です。</p>
+    <div class="panel">
+      <div class="grid c2">
+        <div>
+          <label class="fld" for="nbits">ビット数：<span class="mono" id="nbitsV">4</span> ビット</label>
+          <input type="range" id="nbits" min="3" max="8" step="1" value="4">
+          <label class="fld" style="margin-top:10px" for="negVal">表したい10進法の数：<span class="mono" id="negValV">-7</span></label>
+          <input type="range" id="negVal" min="-128" max="127" step="1" value="-7">
+          <div class="calcwrap" style="margin-top:12px">
+            <div class="steplbl" id="negStep1"></div><div class="bitline" id="n1"></div>
+            <div class="arrowdown">↓　反転して1を足す</div>
+            <div class="bitline" id="n2"></div>
+          </div>
+          <div class="note" id="negNote" style="margin-top:12px"></div>
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="k">表せる範囲（符号あり）</div><div class="v" id="rangeSigned" style="font-size:1.1rem">—</div></div>
+            <div class="metric"><div class="k">表せる範囲（符号なし）</div><div class="v" id="rangeUnsigned" style="font-size:1.1rem">—</div></div>
+          </div>
+          <div class="tbl-scroll" style="margin-top:12px;max-height:340px;overflow:auto">
+            <table class="tbl" id="rangeTable"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step5">
+    <h2><span class="no">STEP 5</span>確認クイズ</h2>
+    <div class="panel">
+      <div class="qhead">
+        <span class="badge" id="qProgress">1 / 1</span>
+        <span class="badge">正解 <span class="score" id="qScore">0</span></span>
+      </div>
+      <div class="card-q"><div class="q-scene" id="qText"></div></div>
+      <div class="choice4" id="qChoices"></div>
+      <div class="note" id="qFb" hidden style="margin-top:12px"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn primary" id="qNext" disabled>次の問題</button>
+        <button class="btn ghost" id="qReset">最初から</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="glossary">
+    <h2><span class="no">用語</span>この節で出てくることば</h2>
+    <div id="glossBox"></div>
+  </section>
+
+  <section class="step">
+    <h2><span class="no">まとめ</span>補数のポイント</h2>
+    <ul style="margin:0;padding-left:1.2em;color:var(--ink-2);font-size:.92rem;line-height:2.05">
+      <li>補数＝<strong>足すと桁が1つ増える数のうち、いちばん小さいもの</strong>。</li>
+      <li>求め方は<strong>各桁の0と1を反転して1を足す</strong>だけ。</li>
+      <li><strong>A − B ＝ A ＋（Bの補数）</strong>。最後に<strong>いちばん上の桁上がりを捨てる</strong>。</li>
+      <li>負の数は補数で表す。<strong>いちばん上のビットが1なら負の数</strong>。</li>
+      <li>nビットの符号ありの範囲は <span class="mono">−2<sup>n−1</sup> 〜 2<sup>n−1</sup>−1</span>。<strong>負のほうが1つ多い</strong>。</li>
+    </ul>
+  </section>
+
+  <section class="step">
+    <h2><span class="no">活用</span>授業・探究での使い方</h2>
+    <div class="use-note">
+      <h3>授業で</h3>
+      <ul>
+        <li>STEP 1 で「足すと桁が1つ増える最小の数」という定義を、実際に足して確かめさせる。</li>
+        <li>STEP 2 の「反転して1を足す」を全体で1回やれば、あとは機械的に処理できる。</li>
+        <li>STEP 3 の桁上がりを捨てる操作は、つまずきやすいので投影して確認する。</li>
+      </ul>
+      <h3 style="margin-top:12px">探究で</h3>
+      <ul>
+        <li>8ビットで表せる負の数の範囲を、実際に表を作って確かめる。</li>
+        <li>なぜ最上位ビットが符号を表すことになるのかを、補数の作り方から説明する。</li>
+        <li>オーバーフローが起きるとどうなるかを、実際の値で確かめる。</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  情報Ⅰ 共通テスト対策問題集（技術評論社）連動Webアプリ　/　Created by Dit-Lab.(Daiki ITO)　/　Supported by Tomoaki ATSUMI
+</footer>
+
+<script src="js/tools.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/terms.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
